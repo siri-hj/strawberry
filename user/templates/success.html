@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/js/jquery-3.6.5.js"></script>
+</head>
+<body>
+    <div class='table'>
+            <div class='tr'>
+                <div class='td'><img src="/static/images/1.png" id="scenery"  width="200px" height="100px" /></div>
+                <input type="button" id="get_valid_code1" value="(❤ω❤)">
+                <div class='td'><img src="/static/images/2.png" alt2=""  width="200px" height="100px" /></div>
+                <input type="button" id="get_valid_code2" value="(❤ω❤)">
+                <div class='td'><img src="/static/images/3.png" alt3=""  width="200px" height="100px" /></div>
+                <input type="button" id="get_valid_code3" value="(❤ω❤)">
+                <div class='td'><img src="/static/images/4.png" alt="scenery"  width="200px" height="100px" /></div>
+                <input type="button" id="get_valid_code4" value="(❤ω❤)">
+            </div>
+    </div>
+<script>
+    $(function (){
+        $('#get_valid_code1').click(function() {
+            let kind = $("img").attr("id");
+            if (kind){
+                $.ajax({
+                    // 请求方式
+                    type: 'GET',
+                    // 请求媒体类型
+                    contentType: 'application/json;charset=UTF-8',
+                    // 请求地址
+                    url: 'http://127.0.0.1:5000/user/impression?kind=' + kind,
+                    // 请求成功
+                    success: function (result) {
+                        alert(result.msg)
+                    },
+                    // 请求失败,包含具体错误信息
+                    error: function (e) {
+                        alert(e.status);
+                        alert(e.responseText);
+                    }
+                })
+            }
+        })
+    })
+</script>
+
+</body>
+</html>
